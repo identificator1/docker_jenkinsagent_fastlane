@@ -30,13 +30,13 @@ RUN dpkg --add-architecture i386 && \
     unzip tools.zip && rm tools.zip && \
     echo y | android update sdk -a -u -t platform-tools,${ANDROID_APIS},build-tools-${ANDROID_BUILD_TOOLS_VERSION} && \
     chmod a+x -R $ANDROID_HOME && \
-    chown -R root:root $ANDROID_HOME && \\
+    chown -R root:root $ANDROID_HOME && \
 
+    # addon
     mkdir tmp && \
     cd /opt && \
     mkdir app
-    
-    
+        
 COPY gradle-wrapper.properties /opt/android/tools/templates/gradle/wrapper/gradle/wrapper/
 RUN /opt/android/tools/templates/gradle/wrapper/gradlew \    
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
