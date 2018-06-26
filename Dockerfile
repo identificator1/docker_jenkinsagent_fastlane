@@ -22,7 +22,7 @@ RUN dpkg --add-architecture i386 && \
     gem install bundler && \
     gem install curb && \
     gem install fastlane-plugin-badge && \
-    apt-get -qq install -y wget curl maven ant gradle libncurses5:i386 libstdc++6:i386 zlib1g:i386 && \
+    apt-get -qq install -y wget curl maven ant gradle libncurses5:i386 libstdc++6:i386 zlib1g:i386 \
     mkdir tmp && \
     cd /opt && \
     mkdir app
