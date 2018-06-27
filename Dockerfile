@@ -14,7 +14,6 @@ ENV PATH $PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/bu
 
 WORKDIR /opt
 
-#RUN locale-gen en_US.UTF-8
 RUN dpkg --add-architecture i386 && \
     apt-get -qq update && \
     apt-get install --no-install-recommends -y build-essential git ruby2.3-dev libcurl3 libcurl3-gnutls libcurl4-openssl-dev imagemagick mc vim && \
@@ -33,12 +32,14 @@ RUN dpkg --add-architecture i386 && \
     chown -R root:root $ANDROID_HOME && \
 
     # addon
+RUN locale-gen en_US.UTF-8 && \
+    touch /etc/ssh/ssh_config && \
     echo -e "StrictHostKeyChecking no" >> /etc/ssh/ssh_config && \
     mkdir tmp && \
     cd /opt && \
     mkdir app
         
 COPY gradle-wrapper.properties /opt/android/tools/templates/gradle/wrapper/gradle/wrapper/
-RUN /opt/android/tools/templates/gradle/wrapper/gradlew \    
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-    && apt-get autoremove -y && apt-get clean
+RUN /opt/android/tools/templates/gradle/wrapper/gradlew && \    
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    apt-get autoremove -y && apt-get clean
