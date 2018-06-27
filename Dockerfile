@@ -41,3 +41,4 @@ COPY gradle-wrapper.properties /opt/android/tools/templates/gradle/wrapper/gradl
 RUN /opt/android/tools/templates/gradle/wrapper/gradlew \    
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && apt-get autoremove -y && apt-get clean
+RUN ssh-keyscan git.epam.com >> ~/.ssh/known_hosts
