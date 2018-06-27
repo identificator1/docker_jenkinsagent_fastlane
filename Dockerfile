@@ -29,7 +29,7 @@ RUN dpkg --add-architecture i386 && \
     unzip tools.zip && rm tools.zip && \
     echo y | android update sdk -a -u -t platform-tools,${ANDROID_APIS},build-tools-${ANDROID_BUILD_TOOLS_VERSION} && \
     chmod a+x -R $ANDROID_HOME && \
-    chown -R root:root $ANDROID_HOME && \
+    chown -R root:root $ANDROID_HOME
 
     # addon
 #RUN locale-gen en_US.UTF-8 && \
