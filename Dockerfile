@@ -16,7 +16,7 @@ WORKDIR /opt
 
 #RUN locale-gen en_US.UTF-8
 RUN dpkg --add-architecture i386 && \
-    apt-get -qq update && && \
+    apt-get -qq update && \
     apt-get install --no-install-recommends -y build-essential git ruby2.3-dev libcurl3 libcurl3-gnutls libcurl4-openssl-dev imagemagick mc vim && \
     gem install fastlane && \
     gem install bundler && \
