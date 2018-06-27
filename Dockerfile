@@ -32,10 +32,10 @@ RUN dpkg --add-architecture i386 && \
     chown -R root:root $ANDROID_HOME && \
 
     # addon
-RUN locale-gen en_US.UTF-8 && \
-    touch /etc/ssh/ssh_config && \
-    echo -e "StrictHostKeyChecking no" >> /etc/ssh/ssh_config && \
-    mkdir tmp && \
+#RUN locale-gen en_US.UTF-8 && \
+RUN touch /etc/ssh/ssh_config && \
+    echo -e "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
+RUN mkdir tmp && \
     cd /opt && \
     mkdir app
         
