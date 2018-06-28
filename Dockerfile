@@ -40,7 +40,8 @@ RUN sed -i /etc/ssh/sshd_config \
         
 RUN mkdir tmp && \
     cd /opt && \
-    mkdir app
+    mkdir app && \
+    cd ~
         
 COPY gradle-wrapper.properties /opt/android/tools/templates/gradle/wrapper/gradle/wrapper/
 RUN /opt/android/tools/templates/gradle/wrapper/gradlew && \    
