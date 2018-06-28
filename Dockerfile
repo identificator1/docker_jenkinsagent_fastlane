@@ -1,4 +1,5 @@
 FROM jenkinsci/ssh-slave
+# in initial image ARG user=jenkins ARG group=jenkins ARG uid=1000 ARG gid=1000 ARG JENKINS_AGENT_HOME=/home/${user}
 
 MAINTAINER DG
 
@@ -29,12 +30,11 @@ RUN dpkg --add-architecture i386 && \
     unzip tools.zip && rm tools.zip && \
     echo y | android update sdk -a -u -t platform-tools,${ANDROID_APIS},build-tools-${ANDROID_BUILD_TOOLS_VERSION} && \
     chmod a+x -R $ANDROID_HOME && \
-    chown -R root:root $ANDROID_HOME
+    chown -R jenkins:jenkins $ANDROID_HOME
 
     # addon
 #RUN locale-gen en_US.UTF-8 && \
-RUN mkdir /root/.ssh && echo "StrictHostKeyChecking no " > /root/.ssh/config && \
-    mkdir /jenkins/.ssh && echo "StrictHostKeyChecking no " > /jenkins/.ssh/config
+RUN mkdir /jenkins/.ssh && echo "StrictHostKeyChecking no " > /jenkins/.ssh/config
 RUN mkdir tmp && \
     cd /opt && \
     mkdir app
