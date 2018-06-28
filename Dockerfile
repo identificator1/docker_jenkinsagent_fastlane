@@ -33,8 +33,7 @@ RUN dpkg --add-architecture i386 && \
 
     # addon
 #RUN locale-gen en_US.UTF-8 && \
-RUN touch /etc/ssh/ssh_config && \
-    echo -e "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
+RUN mkdir /root/.ssh && echo "StrictHostKeyChecking no " > /root/.ssh/config
 RUN mkdir tmp && \
     cd /opt && \
     mkdir app
