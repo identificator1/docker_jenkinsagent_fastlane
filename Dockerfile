@@ -34,7 +34,10 @@ RUN dpkg --add-architecture i386 && \
 
     # addon
 #RUN locale-gen en_US.UTF-8 && \
-RUN mkdir /jenkins/.ssh && echo "StrictHostKeyChecking no " > /jenkins/.ssh/config
+#RUN mkdir /jenkins/.ssh && echo "StrictHostKeyChecking no " > /jenkins/.ssh/config
+RUN sed -i /etc/ssh/sshd_config \
+        -e 's/#StrictHostKeyChecking.*/StrictHostKeyChecking no/'
+        
 RUN mkdir tmp && \
     cd /opt && \
     mkdir app
