@@ -14,9 +14,9 @@ ENV LANG='en_US.UTF-8' LANGUAGE='en_US.UTF-8' LC_ALL='en_US.UTF-8' \
     MAVEN_HOME="/home/jenkins/maven" \
     GRADLE_HOME="/home/jenkins/gradle" \
     ANDROID_HOME="/opt/android"
-ENV PATH $PATH:/usr/sbin:/usr/bin:/sbin:/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/$ANDROID_BUILD_TOOLS_VERSION:$ANT_HOME/bin:$MAVEN_HOME/bin:$GRADLE_HOME/bin
-
-WORKDIR /home/jenkins
+ENV PATH $PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/$ANDROID_BUILD_TOOLS_VERSION:$ANT_HOME/bin:$MAVEN_HOME/bin:$GRADLE_HOME/bin
+#:/usr/sbin:/usr/bin:/sbin:/bin
+WORKDIR /opt
 
 RUN dpkg --add-architecture i386 && \
     apt-get -qq update && \
