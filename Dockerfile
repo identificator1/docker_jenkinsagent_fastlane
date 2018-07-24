@@ -13,7 +13,7 @@ ENV LANG='en_US.UTF-8' LANGUAGE='en_US.UTF-8' LC_ALL='en_US.UTF-8' \
     ANT_HOME="/home/jenkins/ant" \
     MAVEN_HOME="/home/jenkins/maven" \
     GRADLE_HOME="/home/jenkins/gradle" \
-    ANDROID_HOME="/home/jenkins/android"
+    ANDROID_HOME="/opt/android"
 ENV PATH $PATH:/usr/sbin:/usr/bin:/sbin:/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/$ANDROID_BUILD_TOOLS_VERSION:$ANT_HOME/bin:$MAVEN_HOME/bin:$GRADLE_HOME/bin
 
 WORKDIR /home/jenkins
@@ -45,7 +45,7 @@ RUN cd /home/jenkins && \
     mkdir app && \
     cd ~
         
-COPY gradle-wrapper.properties /home/jenkins/android/tools/templates/gradle/wrapper/gradle/wrapper/
-RUN /home/jenkins/android/tools/templates/gradle/wrapper/gradlew && \    
+COPY gradle-wrapper.properties /opt/android/tools/templates/gradle/wrapper/gradle/wrapper/
+RUN /opt/android/tools/templates/gradle/wrapper/gradlew && \    
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     apt-get autoremove -y && apt-get clean
