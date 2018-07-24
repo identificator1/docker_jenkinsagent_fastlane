@@ -1,5 +1,8 @@
 FROM jenkinsci/ssh-slave
 # in initial image ARG user=jenkins ARG group=jenkins ARG uid=1000 ARG gid=1000 ARG JENKINS_AGENT_HOME=/home/${user}
+# workdir = JENKINS_AGENT_HOME=/home/${user}
+# VOLUME "${JENKINS_AGENT_HOME}" "/tmp" "/run" "/var/run"
+
 
 MAINTAINER DG
 
