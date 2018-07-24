@@ -41,7 +41,7 @@ RUN dpkg --add-architecture i386 && \
 #RUN sed -i /etc/ssh/sshd_config \
 #        -e 's/#StrictHostKeyChecking.*/StrictHostKeyChecking no/'
         
-RUN cd /home/jenkins && \
+RUN cd /opt && \
     mkdir app && \
     cd ~
         
