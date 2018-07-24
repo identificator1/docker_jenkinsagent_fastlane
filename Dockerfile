@@ -10,13 +10,13 @@ ENV LANG='en_US.UTF-8' LANGUAGE='en_US.UTF-8' LC_ALL='en_US.UTF-8' \
     ANDROID_SDK_URL="https://dl.google.com/android/repository/tools_r25.2.5-linux.zip" \
     ANDROID_BUILD_TOOLS_VERSION=27.0.3 \
     ANDROID_APIS="android-19,android-21,android-25,android-26" \
-    ANT_HOME="/usr/share/ant" \
-    MAVEN_HOME="/usr/share/maven" \
-    GRADLE_HOME="/usr/share/gradle" \
-    ANDROID_HOME="/opt/android"
+    ANT_HOME="/home/jenkins/ant" \
+    MAVEN_HOME="/home/jenkins/maven" \
+    GRADLE_HOME="/home/jenkins/gradle" \
+    ANDROID_HOME="/home/jenkins/android"
 ENV PATH $PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/$ANDROID_BUILD_TOOLS_VERSION:$ANT_HOME/bin:$MAVEN_HOME/bin:$GRADLE_HOME/bin
 
-WORKDIR /opt
+WORKDIR /home/jenkins
 
 RUN dpkg --add-architecture i386 && \
     apt-get -qq update && \
@@ -38,15 +38,15 @@ RUN dpkg --add-architecture i386 && \
     # addon
 #RUN locale-gen en_US.UTF-8 && \
 #RUN mkdir /jenkins/.ssh && echo "StrictHostKeyChecking no " > /jenkins/.ssh/config
-RUN sed -i /etc/ssh/sshd_config \
-        -e 's/#StrictHostKeyChecking.*/StrictHostKeyChecking no/'
+#RUN sed -i /etc/ssh/sshd_config \
+#        -e 's/#StrictHostKeyChecking.*/StrictHostKeyChecking no/'
         
-RUN mkdir tmp && \
-    cd /opt && \
+RUN cd / && mkdir tmp && \
+    cd /home/jenkins && \
     mkdir app && \
     cd ~
         
-COPY gradle-wrapper.properties /opt/android/tools/templates/gradle/wrapper/gradle/wrapper/
-RUN /opt/android/tools/templates/gradle/wrapper/gradlew && \    
+COPY gradle-wrapper.properties /home/jenkins/android/tools/templates/gradle/wrapper/gradle/wrapper/
+RUN /home/jenkins/android/tools/templates/gradle/wrapper/gradlew && \    
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     apt-get autoremove -y && apt-get clean
