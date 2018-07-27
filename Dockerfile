@@ -45,7 +45,7 @@ RUN cd /opt && \
     mkdir app && \
     cd ~
         
-COPY gradle-wrapper.properties /opt/android/tools/templates/gradle/wrapper/gradle/wrapper/
+COPY gradle-wrapper.properties /opt/android/tools/templates/gradle/wrapper/
 RUN /opt/android/tools/templates/gradle/wrapper/gradlew && \    
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     apt-get autoremove -y && apt-get clean
