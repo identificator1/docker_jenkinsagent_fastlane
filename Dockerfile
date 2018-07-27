@@ -43,12 +43,10 @@ RUN dpkg --add-architecture i386 && \
         
 RUN cd /opt && \
     mkdir app && \
-    cd ~
         
 COPY gradle-wrapper.properties /opt/android/tools/templates/gradle/wrapper/
 RUN /opt/android/tools/templates/gradle/wrapper/gradlew && \    
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     apt-get autoremove -y && apt-get clean
 
-RUN locale-gen en_US.UTF-8
 #RUN cd /home/jenkins && mkdir app && cd ~
