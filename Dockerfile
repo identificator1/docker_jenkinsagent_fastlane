@@ -43,7 +43,7 @@ RUN dpkg --add-architecture i386 && \
         
 RUN cd /opt && mkdir app
         
-COPY gradle-wrapper.properties /opt/android/tools/templates/gradle/wrapper/
+COPY gradle-wrapper.properties /opt/android/tools/templates/gradle/wrapper/gradle/wrapper/
 RUN /opt/android/tools/templates/gradle/wrapper/gradlew && \    
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     apt-get autoremove -y && apt-get clean
