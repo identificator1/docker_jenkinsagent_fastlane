@@ -3,16 +3,15 @@ FROM jenkinsci/ssh-slave
 # workdir = JENKINS_AGENT_HOME=/home/${user}
 # VOLUME "${JENKINS_AGENT_HOME}" "/tmp" "/run" "/var/run"
 
-
 MAINTAINER DG
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US.UTF-8' LC_ALL='en_US.UTF-8' \
     ANDROID_SDK_URL="https://dl.google.com/android/repository/tools_r25.2.5-linux.zip" \
     ANDROID_BUILD_TOOLS_VERSION=27.0.3 \
     ANDROID_APIS="android-19,android-21,android-25,android-26" \
-    ANT_HOME="/home/jenkins/ant" \
-    MAVEN_HOME="/home/jenkins/maven" \
-    GRADLE_HOME="/home/jenkins/gradle" \
+    ANT_HOME="/opt/ant" \
+    MAVEN_HOME="/opt/maven" \
+    GRADLE_HOME="/opt/gradle" \
     ANDROID_HOME="/opt/android"
 ENV PATH $PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/$ANDROID_BUILD_TOOLS_VERSION:$ANT_HOME/bin:$MAVEN_HOME/bin:$GRADLE_HOME/bin
 #:/usr/sbin:/usr/bin:/sbin:/bin
@@ -43,7 +42,7 @@ RUN dpkg --add-architecture i386 && \
         
 RUN cd /opt && mkdir app
         
-COPY gradle-wrapper.properties /opt/android/tools/templates/gradle/wrapper/gradle/wrapper/
+#COPY gradle-wrapper.properties /opt/android/tools/templates/gradle/wrapper/gradle/wrapper/
 RUN /opt/android/tools/templates/gradle/wrapper/gradlew && \    
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     apt-get autoremove -y && apt-get clean
