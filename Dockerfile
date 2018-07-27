@@ -41,8 +41,7 @@ RUN dpkg --add-architecture i386 && \
 #RUN sed -i /etc/ssh/sshd_config \
 #        -e 's/#StrictHostKeyChecking.*/StrictHostKeyChecking no/'
         
-RUN cd /opt 
-# && mkdir app
+RUN cd /opt && mkdir app
         
 COPY gradle-wrapper.properties /opt/android/tools/templates/gradle/wrapper/
 RUN /opt/android/tools/templates/gradle/wrapper/gradlew && \    
